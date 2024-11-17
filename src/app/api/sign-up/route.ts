@@ -2,7 +2,6 @@ import connectDB from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import bcrypt from "bcryptjs"
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
-import { trackSynchronousPlatformIOAccessInDev } from "next/dist/server/app-render/dynamic-rendering";
 
 export async function POST (request:Request) {
     await connectDB()
@@ -27,10 +26,19 @@ export async function POST (request:Request) {
 
        const verifyCode = Math.floor(100000+Math.random()*900000).toString()
        if (existUserVerifiedByEmail){
-          return Response.json({
-            success:false,
-            message:'User already exist'
-          })
+           if(existUserVerifiedByEmail.isVerified){
+            return Response.json({
+                success:false,
+                message:'User already exist with this email'
+              })
+           }
+           else{
+              const hassedPassword = await bcrypt.hash(password,10)
+              existUserVerifiedByEmail.password = hassedPassword;
+              existUserVerifiedByEmail.verifyCode = verifyCode;
+              existUserVerifiedByEmail.verifyCodeExpiry = new Date(Date.now()+ 3600000);
+              await existUserVerifiedByEmail.save();
+           }
        }
        else{
         const hassedPassword = await bcrypt.hash(password,10)
@@ -52,9 +60,23 @@ export async function POST (request:Request) {
 
        }
 
-       // send
+       // send  verification email
+       const emailResponse = await sendVerificationEmail(
+           email,
+           verifyCode,
+           username
+       )
 
-      
+      if(!emailResponse.success){
+        return Response.json({
+             success:false,
+             message: emailResponse.message
+        })
+      }
+      return Response.json({
+        success:true,
+        message:"User registered Successfully. Please verify your email"
+      })
 
 
     } catch (error) {
