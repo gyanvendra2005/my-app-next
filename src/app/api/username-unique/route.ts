@@ -24,7 +24,7 @@ export async function GET(request:Request){
 
             return Response.json({
                 success:false,
-                message: 'Invalid query Parameters'
+                message: 'username must have atlest 4 characters'
             })
         }
 
