@@ -116,7 +116,16 @@ const Page = () => {
     }
 
    const username = session?.user?.username;
-   const baseUrl =`${window.location.protocol}//${window.location.host}`
+  //  const baseUrl =`${window.location.protocol}//${window.location.host}`
+  const [baseUrl, setBaseUrl] = useState('');
+
+  useEffect(() => {
+    // This will only run on the client side
+    if (typeof window !== 'undefined') {
+      const url = `${window.location.protocol}//${window.location.host}`;
+      setBaseUrl(url); // Update state with the base URL
+    }
+  }, []);
    const profileUrl = `${baseUrl}/u/${username}`
 
    const copyToClipboard = ()=>{
