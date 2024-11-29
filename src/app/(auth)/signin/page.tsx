@@ -30,6 +30,7 @@ const signinPage = () => {
       })
 
     const onSubmit = async (data:z.infer<typeof signInSchema>) => {
+         setisSubmitting(true)
         const response =  await signIn('credentials',{
             redirect:false,
             identifier: data.identifier,
@@ -42,13 +43,15 @@ const signinPage = () => {
             })
         }
         else{
+          router.replace('/dashboad');
             toast({
                 title:"Login Successfull"
             })
         }
-        if(response?.url){
-            router.replace('/dashboad');
-        }
+        // if(response?.url){
+        //     router.replace('/dashboad');
+        // }
+        setisSubmitting(false)
     }
 
 

@@ -12,11 +12,11 @@ export async function middleware(request: NextRequest) {
         (
             url.pathname.startsWith('/signin') ||
             url.pathname.startsWith('/signup') ||
-            url.pathname.startsWith('/') ||
+            // url.pathname.startsWith('/') ||
             url.pathname.startsWith('/verify')
         )
     ){
-        return NextResponse.redirect(new URL('/dashboard', request.url))
+        return NextResponse.redirect(new URL('/dashboad', request.url))
     }
     
 }
@@ -27,7 +27,7 @@ export const config = {
     '/signin',
     '/signup',
     '/',
-    '/dasboard/:path*',
+    '/dasboad/:path*',
     '/verify/:path*'
   ]
 }

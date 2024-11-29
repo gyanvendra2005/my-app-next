@@ -11,8 +11,8 @@ export async function POST (request:Request) {
        const{username,email,password} =   await request.json()
         
       const existUserVerifiedByUsername = await UserModel.findOne({
-        username,
-        isVerified:true
+        username
+        // isVerified:true
        })
 
        if (existUserVerifiedByUsername){
@@ -26,21 +26,25 @@ export async function POST (request:Request) {
 
        const verifyCode = Math.floor(100000+Math.random()*900000).toString()
        if (existUserVerifiedByEmail){
-           if(existUserVerifiedByEmail.isVerified){
+          //  if(existUserVerifiedByEmail.isVerified){
+          //   return Response.json({
+          //       success:false,
+          //       message:'User already exist with this email'
+          //     })
+          //  }
             return Response.json({
                 success:false,
                 message:'User already exist with this email'
-              })
-           }
-           else{
-              const hassedPassword = await bcrypt.hash(password,10)
-              existUserVerifiedByEmail.password = hassedPassword;
-              existUserVerifiedByEmail.username = username;
-              existUserVerifiedByEmail.verifyCode = verifyCode;
-              existUserVerifiedByEmail.verifyCodeExpiry = new Date(Date.now()+ 3600000);
-              await existUserVerifiedByEmail.save();
-           }
-       }
+              })}
+      //      else{
+      //         const hassedPassword = await bcrypt.hash(password,10)
+      //         existUserVerifiedByEmail.password = hassedPassword;
+      //         existUserVerifiedByEmail.username = username;
+      //         existUserVerifiedByEmail.verifyCode = verifyCode;
+      //         existUserVerifiedByEmail.verifyCodeExpiry = new Date(Date.now()+ 3600000);
+      //         await existUserVerifiedByEmail.save();
+      //      }
+      //  }
        else{
         const hassedPassword = await bcrypt.hash(password,10)
         const expiryDate = new Date()
@@ -62,21 +66,22 @@ export async function POST (request:Request) {
        }
 
        // send  verification email
-       const emailResponse = await sendVerificationEmail(
-           email,
-           username,
-           verifyCode
-       )
+      //  const emailResponse = await sendVerificationEmail(
+      //      email,
+      //      username,
+      //      verifyCode
+      //  )
 
-      if(!emailResponse.success){
-        return Response.json({
-             success:false,
-             message: emailResponse.message
-        })
-      }
+      // if(!emailResponse.success){
+      //   return Response.json({
+      //        success:false,
+      //        message: emailResponse.message
+      //   })
+      // }
       return Response.json({
         success:true,
-        message:"User registered Successfully. Please verify your email"
+        // message:"User registered Successfully. Please verify your email"
+        message:"User registered Successfully."
       })
 
 

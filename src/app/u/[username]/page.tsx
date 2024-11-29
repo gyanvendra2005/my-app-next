@@ -26,7 +26,7 @@ import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
 
 const specialChar = '||';
-const {toast} = useToast()
+
 
 const parseStringMessages = (messageString: string): string[] => {
   return messageString.split(specialChar);
@@ -38,6 +38,7 @@ const initialMessageString =
 export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
+  const {toast} = useToast()
 
   const {
     complete,

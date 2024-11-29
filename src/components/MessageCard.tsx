@@ -25,10 +25,11 @@ import { Message } from "@/model/User"
 import { useToast } from "@/hooks/use-toast"
 import axios from "axios"
 import dayjs from 'dayjs';
+import { string } from "zod"
   
 type MessageCardProps ={
   message:Message;
-  onMessageDelete: (messageId:string) => void
+  onMessageDelete: (messageId:any) => void
 }
 
 const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
@@ -49,7 +50,7 @@ const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
 <Card className="bg-white border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition duration-300">
   <CardHeader>
     <div className="flex justify-between items-center">
-      <CardTitle className="text-xl font-semibold text-gray-800">{message}</CardTitle>
+      <CardTitle className="text-xl font-semibold text-gray-800">{message.content}</CardTitle>
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button 

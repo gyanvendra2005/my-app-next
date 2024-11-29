@@ -67,7 +67,8 @@ const page = () => {
             description:response.data.message
           })
           if(response.data.success){
-            router.replace(`/verify/${username}`)
+            // router.replace(`/verify/${username}`)
+            router.replace(`/signin`)
           }
           setisSubmitting(false)
         } catch (error) {
