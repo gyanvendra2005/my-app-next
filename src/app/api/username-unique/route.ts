@@ -20,7 +20,7 @@ export async function GET(request:Request){
         const result = UsernameQuerySchemas.safeParse(queryParam)
 
         if(!result.success){
-            const usernameError = result.error.format().username?._errors || []
+            // const usernameError = result.error.format().username?._errors || []
 
             return Response.json({
                 success:false,

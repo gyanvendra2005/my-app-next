@@ -2,8 +2,8 @@
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
+    // CardDescription,
+    // CardFooter,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
@@ -25,7 +25,7 @@ import { Message } from "@/model/User"
 import { useToast } from "@/hooks/use-toast"
 import axios from "axios"
 import dayjs from 'dayjs';
-import { string } from "zod"
+// import { string } from "zod"
   
 type MessageCardProps ={
   message:Message;

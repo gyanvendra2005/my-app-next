@@ -1,10 +1,12 @@
-import { getServerSession, User } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/option"; 
 import connectDB from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import mongoose from "mongoose";
 
 export async function GET(request:Request) {
+    console.log(request);
+    
     await connectDB();
     const session = await getServerSession(authOptions)
     const user = session?.user
@@ -37,6 +39,8 @@ export async function GET(request:Request) {
         })
 
     } catch (error) {
+        console.log(error);
+        
         return Response.json({
             success: false,
             message:'Unexpected error'
