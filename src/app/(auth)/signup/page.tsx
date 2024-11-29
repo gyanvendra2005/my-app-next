@@ -10,7 +10,7 @@ import {useDebounceCallback} from'usehooks-ts'
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation';
 import { signUpSchema } from '@/schemas/signUpSchema'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
 import { Loader2 } from 'lucide-react'
@@ -47,6 +47,8 @@ const Page = () => {
               setUsernameMessage(response.data.message)
             } catch (error) {
               setUsernameMessage("Error while checking username")
+              console.log(error);
+              
             }
             finally{
               setisCheckingUsername(false)
@@ -74,7 +76,8 @@ const Page = () => {
         } catch (error) {
           console.log("Error in sign up of user",error);
           toast({
-            title:"Signup failed",            variant:"destructive",
+            title:"Signup failed",     
+            variant:"destructive",
           })
           setisSubmitting(false)
         }

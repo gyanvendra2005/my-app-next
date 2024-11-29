@@ -1,4 +1,4 @@
-import { getServerSession, User } from "next-auth";
+import { getServerSession} from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/option"; 
 import connectDB from "@/lib/dbConnect";
 import UserModel from "@/model/User";
@@ -36,6 +36,8 @@ export async function POST(request:Request){
         })
 
     } catch (error) {
+        console.log(error);
+        
         return Response.json({
             success:false,
             message:'Failed to update user status to accept message'
@@ -44,6 +46,8 @@ export async function POST(request:Request){
 }
 
 export async function GET(request:Request) {
+    console.log(request);
+    
     await connectDB();
 
     const session = await getServerSession(authOptions)
@@ -73,6 +77,8 @@ export async function GET(request:Request) {
         })
     
     } catch (error) {
+        console.log(error);
+        
         return Response.json({
             success:false,
             message:'user not found'

@@ -1,8 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+// import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+// import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { verifySchema } from '@/schemas/verifySchema'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -25,9 +25,9 @@ const  VerifyAccount = () => {
     const [value, setValue] = React.useState("")
 
     // zod implementation
-    const form = useForm({
-    resolver:zodResolver(verifySchema),
-  })
+  //   const form = useForm({
+  //   resolver:zodResolver(verifySchema),
+  // })
 
   const onSubmit = async() => {
     try {

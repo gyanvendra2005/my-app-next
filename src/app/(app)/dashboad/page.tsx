@@ -46,7 +46,7 @@ const Page = () => {
 
         
         } catch (error) {
-            const axiosError = error as AxiosError<ApiResponse>
+            // const axiosError = error as AxiosError<ApiResponse>
             toast({
                 title:"Error",
                 // description: axiosError.response?.data.message || "Failes to fetch message settings"
@@ -193,7 +193,7 @@ const Page = () => {
       {Array.isArray(messages) && messages.length > 0 ? (
         messages.map((message) => (
           <MessageCard
-            // key={message._id}
+            key={message._id}
             message={message}
             onMessageDelete={handleDelete}
           />
