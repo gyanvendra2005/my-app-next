@@ -16,7 +16,7 @@ export async function GET(request:Request) {
         })
     }
 
-    const userId = new mongoose.Types.ObjectId(user._id);
+    const userId = new mongoose.Types.ObjectId(user.id);
     
     try {
         const user = await UserModel.aggregate([

@@ -47,7 +47,7 @@ const signinPage = () => {
             })
         }
         if(response?.url){
-            router.replace('/dashboard');
+            router.replace('/dashboad');
         }
     }
 

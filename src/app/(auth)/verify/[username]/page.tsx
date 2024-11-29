@@ -12,21 +12,28 @@ import React from 'react'
 import {useForm } from 'react-hook-form'
 import * as z from 'zod'
 
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+
 const  verifyAccount = () => {
     const router = useRouter()
     const params = useParams()
     const {toast} = useToast()
+    const [value, setValue] = React.useState("")
 
     // zod implementation
     const form = useForm({
     resolver:zodResolver(verifySchema),
   })
 
-  const onSubmit = async(data:z.infer<typeof verifySchema>) => {
+  const onSubmit = async() => {
     try {
         const response = await axios.post('/api/verify-code',{
             username: params.username,
-            code: data.code
+            code: value
         })
         toast({
             title:"Success",
@@ -43,53 +50,46 @@ const  verifyAccount = () => {
   }
 
   return (
-
-<div className="flex justify-center items-center min-h-screen bg-gray-50">
-  <div className="w-full max-w-md p-10 bg-white rounded-xl shadow-lg space-y-8">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold text-gray-900 tracking-tight mb-4">
-        Verify Your Account
-      </h1>
-      <p className="text-gray-500 mb-6">
-        We have sent an email with a one-time password (OTP). Please enter it below.
-      </p>
-    </div>
-
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="code"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel htmlFor="code" className="text-sm font-medium text-gray-700">
-                OTP
-              </FormLabel>
-              <FormControl>
-                <Input
-                  id="code"
-                  placeholder="OTP"
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage className="text-red-500 text-sm mt-1" />
-            </FormItem>
-          )}
-        />
-        
-        <Button
-          type="submit"
-          className="w-full py-3 mt-6 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-300"
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-xl space-y-8">
+      <div className="text-center">
+        <h1 className="text-3xl font-semibold text-gray-900 tracking-tight mb-4">Verify Your Account</h1>
+        <p className="text-gray-500 mb-6">We have sent an email with a one-time password (OTP). Please enter it below.</p>
+      </div>
+  
+      <div className="space-y-4">
+        <InputOTP
+          id="code"
+          maxLength={6}
+          value={value}
+          onChange={(value) => setValue(value)}
+          className="space-x-2 flex justify-center"
         >
-          Submit
-        </Button>
-      </form>
-    </Form>
+          <InputOTPGroup className="flex justify-between gap-2">
+            <InputOTPSlot index={0} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+            <InputOTPSlot index={1} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+            <InputOTPSlot index={2} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+            <InputOTPSlot index={3} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+            <InputOTPSlot index={4} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+            <InputOTPSlot index={5} className="w-12 h-12 text-center text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 transition duration-300" />
+          </InputOTPGroup>
+        </InputOTP>
+  
+        <div className="text-center text-sm text-gray-600 mt-4">
+            <>Enter your one-time password.</>
+        </div>
+      </div>
+  
+      <Button
+        // type="submit"
+        className="w-full py-3 mt-6 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300"
+        onClick={onSubmit}
+      >
+        Submit
+      </Button>
+    </div>
   </div>
-</div>
-
-
+  
   )
 }
 
