@@ -10,7 +10,7 @@ import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import React from 'react'
 import {useForm } from 'react-hook-form'
-import * as z from 'zod'
+// import * as z from 'zod'
 
 import {
   InputOTP,
@@ -18,7 +18,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp"
 
-const  verifyAccount = () => {
+const  VerifyAccount = () => {
     const router = useRouter()
     const params = useParams()
     const {toast} = useToast()
@@ -93,4 +93,4 @@ const  verifyAccount = () => {
   )
 }
 
-export default  verifyAccount
+export default  VerifyAccount
