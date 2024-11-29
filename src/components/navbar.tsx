@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import {  signOut, useSession } from 'next-auth/react'
-import { User } from 'next-auth'
+// import { User } from 'next-auth'
 import {Button} from './ui/button'
 import { FaUser } from 'react-icons/fa';
 

@@ -25,7 +25,7 @@ const actionTypes = {
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const
 
-type ActionTypes = keyof typeof actionTypes;
+// type ActionTypes = keyof typeof actionTypes;
 
 let count = 0
 

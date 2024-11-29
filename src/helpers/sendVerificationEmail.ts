@@ -1,7 +1,7 @@
 import { resend } from "@/lib/resend";
 import VerificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse} from "@/types/ApiResponse";
-import { promises } from "dns";
+// import { promises } from "dns";
 
 export async function sendVerificationEmail(
     email: string,
