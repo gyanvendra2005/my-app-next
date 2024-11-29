@@ -47,6 +47,8 @@ const Page = () => {
         
         } catch (error) {
             // const axiosError = error as AxiosError<ApiResponse>
+            console.log(error);
+            
             toast({
                 title:"Error",
                 // description: axiosError.response?.data.message || "Failes to fetch message settings"
