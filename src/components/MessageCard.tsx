@@ -28,6 +28,7 @@ import dayjs from 'dayjs';
 // import { string } from "zod"
   
 type MessageCardProps ={
+  // key:any;
   message:Message;
   onMessageDelete: (messageId:any) => void
 }

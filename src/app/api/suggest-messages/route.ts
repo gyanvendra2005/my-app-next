@@ -22,12 +22,12 @@ export async function POST(req: Request) {
       max_tokens: 150, // Limit tokens to avoid excessive text
     });
 
-    const text = response.choices[0].message.content.trim();
+    // const text = response.choices[0].message.content.trim();
 
     // Returning a response stream (Edge function supports streams)
     const stream = new ReadableStream({
       async start(controller) {
-        controller.enqueue(new TextEncoder().encode(text));
+        // controller.enqueue(new TextEncoder().encode(text));
         controller.close();
       },
     });
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     console.error('An error occurred:', error);
 
     return NextResponse.json(
-      { error: 'Internal Server Error', details: error.message },
+      // { error: 'Internal Server Error', details: error.message },
       { status: 500 }
     );
   }
