@@ -11,7 +11,7 @@ export async function sendVerificationEmail(
     try {
 
         await resend.emails.send({
-            from: 'onWay@resend.dev',
+            from: 'noreply@onwaychat.xyz',
             to: email,
             subject: 'Verification Code',
             react: VerificationEmail({username, otp :verifyCode})
