@@ -4,6 +4,8 @@ import {z} from 'zod'
 import {usernameValidation} from '../../../schemas/signUpSchema'
 
 
+
+
 const UsernameQuerySchemas = z.object({
     username: usernameValidation,
 })
