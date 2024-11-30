@@ -34,12 +34,18 @@ type MessageCardProps ={
 }
 
 const MessageCard = ({message, onMessageDelete}:MessageCardProps) => {
+  const messageid = message._id
 
   const {toast} = useToast()
   const handleDelete = async () => {
-    const response = await axios.delete(`/api/delete-message/${message._id}`)
+    console.log("first");
+    
+    const response = await axios.delete(`/api/delete-messages/${messageid}`)
+    console.log("second");
+    
     toast({
-      title: response.data.message
+      title: response.data.message,
+      description:"Invalid Credentials"
     })
     onMessageDelete(message._id) 
   }
