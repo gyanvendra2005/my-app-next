@@ -14,7 +14,7 @@ const connectDB = async ():Promise<void> => {
     }
 
     try {
-        const db = await mongoose.connect(process.env.MONGODB_URI || '')
+        const db = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://NextAuth:NextAuth@cluster0.wmxf4.mongodb.net/')
          connection.isConnected = db.connections[0].readyState
 
          console.log("db connected");
