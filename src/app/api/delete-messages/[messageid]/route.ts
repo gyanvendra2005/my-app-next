@@ -6,9 +6,9 @@ import { User } from 'next-auth';
 // import { NextRequest } from 'next/server';
 import { authOptions } from '../../auth/[...nextauth]/option';
 
-export async function DELETE(
+export async function POST(
   request: Request,
-  { params }: { params: { messageid: string } }
+  { params }: any
 ) {
     console.log(request);
     
