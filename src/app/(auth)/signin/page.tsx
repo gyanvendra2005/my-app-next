@@ -43,14 +43,14 @@ const SigninPage = () => {
             })
         }
         else{
-          router.replace('/dashboad');
+          // router.replace('/dashboad');
             toast({
                 title:"Login Successfull"
             })
         }
-        // if(response?.url){
-        //     router.replace('/dashboad');
-        // }
+        if(response?.url){
+            router.replace('/dashboad');
+        }
         setisSubmitting(false)
     }
 

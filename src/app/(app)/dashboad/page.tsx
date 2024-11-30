@@ -204,7 +204,7 @@ const Page = () => {
       {Array.isArray(messages) && messages.length > 0 ? (
         messages.map((message) => (
           <MessageCard
-            key="hi"
+            key={Math.random()}
             message={message}
             onMessageDelete={handleDelete}
           />
