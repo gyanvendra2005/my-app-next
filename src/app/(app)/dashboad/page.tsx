@@ -96,24 +96,24 @@ const Page = () => {
     // handle switch change
 
     const handleSwitchChange = async()=>{
-        try {
-            const response =  await axios.post('/api/accept-messages',{
-             acceptMessages: !acceptMessages
-            })
-            setValue('acceptMessages', !acceptMessages)
-            toast({
-                title:response.data.message,
-                // title:"error"
-            })
+      try {
+          const response =  await axios.post('/api/accept-messages',{
+           acceptMessages: !acceptMessages
+          })
+          setValue('acceptMessages', !acceptMessages)
+          toast({
+              title:response.data.message,
+          })
 
-         } catch (error) {
-            const axiosError = error as AxiosError<ApiResponse>
-            toast({
-                title:"Error",
-                description: axiosError.response?.data.message || "Failes to fetch message settings"
-            })
-         }
-    }
+       } catch (error) {
+          const axiosError = error as AxiosError<ApiResponse>
+          toast({
+              title:"Error",
+              description: axiosError.response?.data.message || "Failes to fetch message settings"
+          })
+       }
+  }
+
 
    const username = session?.user?.username;
   //  const baseUrl =`${window.location.protocol}//${window.location.host}`
@@ -140,6 +140,7 @@ const Page = () => {
             please login
         </div>
     }
+
 
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded-xl w-full max-w-6xl shadow-xl">

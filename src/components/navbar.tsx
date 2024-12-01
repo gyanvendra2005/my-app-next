@@ -6,6 +6,8 @@ import {  signOut, useSession } from 'next-auth/react'
 // import { User } from 'next-auth'
 import {Button} from './ui/button'
 import { FaUser } from 'react-icons/fa';
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/sidebar"
 
 const Navbar = () => {
 
@@ -14,10 +16,16 @@ const Navbar = () => {
 
   return (
     <nav className="p-4 md:p-6 shadow-md bg-white">
+      
+{/* <div className="flex flex-col min-h-screen">
+  {children}
+</div> */}
+    
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      
         
         {/* Logo */}
-        <a href="/dashboad" className="text-2xl font-extrabold text-gray-900 mb-4 md:mb-0 hover:text-gray-600 transition duration-300 ease-in-out">
+        <a href="/dashboad" className="text-2xl font-extrabold text-blue-600 mb-4 md:mb-0 hover:text-gray-600 transition duration-300 ease-in-out">
         Anonymous Message
         </a>
 
@@ -52,6 +60,8 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+
+
   )
 }
 

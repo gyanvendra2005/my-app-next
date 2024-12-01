@@ -24,6 +24,7 @@ import { ApiResponse } from '@/types/ApiResponse';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
+import UserCard from '@/components/UserCard';
 
 const specialChar = '||';
 
@@ -97,85 +98,153 @@ export default function SendMessage() {
     }
   };
 
-  return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
-      </h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Write your anonymous message here"
-                    className="resize-none"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex justify-center">
-            {isLoading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
-                Send It
-              </Button>
-            )}
-          </div>
-        </form>
-      </Form>
+  const [users, setUser] = useState([])
+  const [filter, setFilter] = useState("")
 
-      <div className="space-y-4 my-8">
-        <div className="space-y-2">
+    const searchUser = async() => {
+      console.log("hi");
+      
+      try {
+        const response  =await axios.get(`/api/search-user/${filter}`)
+        setUser(response.data.user)
+        console.log(response.data.user[0].username);
+        
+        
+      } catch (error) {
+        setUser([])
+        toast({
+          title: 'Error',
+          description: "User not found",
+        });
+      }
+      console.log(users);
+      
+    }
+
+  return (
+    <div className="container mx-auto my-8 p-6 bg-white rounded-lg shadow-sm max-w-4xl">
+  <h1 className="text-3xl font-semibold mb-6 text-center text-gray-800">
+    Public Profile Link
+  </h1>
+
+  <Form {...form}>
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <FormField
+        control={form.control}
+        name="content"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel className="text-lg font-medium text-gray-700">
+              Send Anonymous Message to @{username}
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Write your anonymous message here"
+                className="resize-none p-4 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-1 focus:ring-gray-400"
+                {...field}
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <div className="flex justify-center">
+        {isLoading ? (
           <Button
-            onClick={fetchSuggestedMessages}
-            className="my-4"
-            disabled={isSuggestLoading}
+            disabled
+            className="flex items-center bg-gray-400 text-white hover:bg-gray-500 transition-all duration-300 px-6 py-3 rounded-md"
           >
-            Suggest Messages
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please wait
           </Button>
-          <p>Click on any message below to select it.</p>
-        </div>
-        <Card>
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
-          </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
-            {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  className="mb-2"
-                  onClick={() => handleMessageClick(message)}
-                >
-                  {message}
-                </Button>
-              ))
-            )}
-          </CardContent>
-        </Card>
+        ) : (
+          <Button
+            type="submit"
+            disabled={isLoading || !messageContent}
+            className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+          >
+            Send It
+          </Button>
+        )}
       </div>
-      <Separator className="my-6" />
-      <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
-        <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
-        </Link>
-      </div>
+    </form>
+  </Form>
+
+  {/* Search User Section */}
+  <div className="mt-6">
+    <div className="flex justify-center items-center space-x-2 mb-4">
+      <input
+        type="text"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className="border border-gray-300 rounded-md px-4 py-2 w-2/3 focus:outline-none focus:ring-1 focus:ring-gray-400"
+        placeholder="Search for users..."
+      />
+      <Button
+        onClick={searchUser}
+        className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+        disabled={isSuggestLoading}
+      >
+        Search User
+      </Button>
     </div>
+  </div>
+
+  {/* User Cards Section - No Grid Layout */}
+  <div className="mt-8 space-y-6">
+    {users.map((user) => (
+      <UserCard user={user} />
+    ))}
+  </div>
+
+  {/* Suggested Messages Section */}
+  <div className="space-y-4 my-8">
+    <div className="space-y-2">
+      <Button
+        onClick={fetchSuggestedMessages}
+        className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+        disabled={isSuggestLoading}
+      >
+        Suggest Messages
+      </Button>
+      <p className="text-center text-gray-600">Click on any message below to select it.</p>
+    </div>
+    <Card className="shadow-sm">
+      <CardHeader>
+        <h3 className="text-xl font-semibold text-gray-800">Suggested Messages</h3>
+      </CardHeader>
+      <CardContent className="flex flex-col space-y-4">
+        {error ? (
+          <p className="text-red-500 text-center">{error.message}</p>
+        ) : (
+          parseStringMessages(completion).map((message, index) => (
+            <Button
+              key={index}
+              variant="outline"
+              className="mb-2 w-full text-left text-gray-700 hover:bg-gray-100"
+              onClick={() => handleMessageClick(message)}
+            >
+              {message}
+            </Button>
+          ))
+        )}
+      </CardContent>
+    </Card>
+  </div>
+
+  <Separator className="my-6" />
+
+  {/* Create Account Section */}
+  <div className="text-center">
+    <div className="mb-4 text-lg text-gray-600">Get Your Message Board</div>
+    <Link href={'/sign-up'}>
+      <Button className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-8 py-3 rounded-md">
+        Create Your Account
+      </Button>
+    </Link>
+  </div>
+</div>
+
+
   );
 }
