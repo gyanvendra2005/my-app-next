@@ -14,6 +14,7 @@ import { ClipboardIcon, Loader2, RefreshCcw } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Link from 'next/link'
 
 
 const Page = () => {
@@ -136,9 +137,71 @@ const Page = () => {
    }
 
     if(!session || !session.user){
-        return <div>
-            please login
-        </div>
+        return(
+          <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded-xl w-full max-w-6xl shadow-xl">
+  <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">User Dashboard</h1>
+
+  {/* Display login prompt for logged-out users */}
+  <div className="mb-6">
+    <h2 className="text-lg font-semibold mb-2 text-gray-700">Please Log In to Access Your Dashboard</h2>
+    <p className="text-gray-600 text-center mb-4">
+      To manage your messages and copy your unique link, please log in or create an account.
+    </p>
+    <div className="flex justify-center space-x-4">
+      {/* Login Button */}
+      <Link href="/signin">
+        <Button className="bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300 rounded-lg px-6 py-3">
+          Login
+        </Button>
+      </Link>
+      
+      {/* Sign Up Button */}
+      <Link href="/sign-up">
+        <Button className="bg-gray-600 text-white hover:bg-gray-700 transition duration-300 rounded-lg px-6 py-3">
+          Sign Up
+        </Button>
+      </Link>
+    </div>
+  </div>
+
+  {/* Information section or Call to Action */}
+  <div className="mb-6">
+    <h2 className="text-lg font-semibold mb-2 text-gray-700">Why Create an Account?</h2>
+    <ul className="list-disc pl-5 text-gray-600">
+      <li>Send anonymous messages to others.</li>
+      <li>Manage your message history and settings.</li>
+      <li>Receive personalized suggestions for messages.</li>
+    </ul>
+  </div>
+
+  <Separator className="mb-6" />
+
+  {/* Image or Banner Section (Optional) */}
+  <div className="mb-6">
+    <p className="text-lg text-gray-700 text-center mb-4">Get started today and engage with the community!</p>
+    <div className="flex justify-center">
+      <img
+        src="https://www.aluminati.net/wp-content/uploads/2022/06/FB-Admins.jpg" // Replace with an actual image path
+        alt="Engage with Community"
+        className="max-w-md rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
+
+  <Separator className="my-6" />
+
+  {/* Footer or Additional Call to Action */}
+  <div className="text-center">
+    <p className="text-gray-600 mb-4">Join now to enjoy full access to all features.</p>
+    <Link href="/sign-up">
+      <Button className="bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300 rounded-lg px-6 py-3">
+        Create an Account
+      </Button>
+    </Link>
+  </div>
+</div>
+
+        )
     }
 
 
