@@ -16,7 +16,7 @@ import {
   // CarouselPrevious,
 } from '@/components/ui/carousel';
 
-export default function Home({ children }: { children: React.ReactNode }) {
+export default function Home() {
   return (
     <>
       {/* Main content */}
