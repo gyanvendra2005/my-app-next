@@ -170,6 +170,8 @@ export default function SendMessage() {
     </form>
   </Form>
 
+  {/* <Separator className="mb-6" /> */}
+
   {/* Search User Section */}
   <div className="mt-6">
     <div className="flex justify-center items-center space-x-2 mb-4">
@@ -190,12 +192,16 @@ export default function SendMessage() {
     </div>
   </div>
 
+  <Separator className="mb-6" />
+
   {/* User Cards Section - No Grid Layout */}
   <div className="mt-8 space-y-6">
     {users.map((user) => (
       <UserCard user={user} key={Math.random()} />
     ))}
   </div>
+
+  <Separator className="mb-6" />
 
   {/* Suggested Messages Section */}
   <div className="space-y-4 my-8">
