@@ -193,7 +193,7 @@ export default function SendMessage() {
   {/* User Cards Section - No Grid Layout */}
   <div className="mt-8 space-y-6">
     {users.map((user) => (
-      <UserCard user={user} />
+      <UserCard user={user} key={Math.random()} />
     ))}
   </div>
 
