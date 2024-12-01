@@ -25,6 +25,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
 import UserCard from '@/components/UserCard';
+import { FaSearch } from "react-icons/fa";
 
 const specialChar = '||';
 
@@ -152,7 +153,7 @@ export default function SendMessage() {
         {isLoading ? (
           <Button
             disabled
-            className="flex items-center bg-gray-400 text-white hover:bg-gray-500 transition-all duration-300 px-6 py-3 rounded-md"
+            // className="flex items-center bg-gray-400 text-white hover:bg-gray-500 transition-all duration-300 px-6 py-3 rounded-md"
           >
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Please wait
@@ -161,7 +162,7 @@ export default function SendMessage() {
           <Button
             type="submit"
             disabled={isLoading || !messageContent}
-            className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+            // className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
           >
             Send It
           </Button>
@@ -175,16 +176,20 @@ export default function SendMessage() {
   {/* Search User Section */}
   <div className="mt-6">
     <div className="flex justify-center items-center space-x-2 mb-4">
-      <input
-        type="text"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="border border-gray-300 rounded-md px-4 py-2 w-2/3 focus:outline-none focus:ring-1 focus:ring-gray-400"
-        placeholder="Search for users..."
-      />
+      <div className="relative w-2/3">
+       <input
+          type="text"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="border border-gray-300 rounded-md px-4 py-2 w-full pl-10 focus:outline-none focus:ring-1 focus:ring-gray-400"
+          placeholder="Search for users..."
+         />
+         <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+      </div>
+
       <Button
         onClick={searchUser}
-        className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+        className="btn btn-primary px-6 py-2 text-sm font-medium rounded-md focus:ring-2 focus:ring-blue-500"
         disabled={isSuggestLoading}
       >
         Search User
@@ -208,7 +213,7 @@ export default function SendMessage() {
     <div className="space-y-2">
       <Button
         onClick={fetchSuggestedMessages}
-        className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-6 py-3 rounded-md"
+        className="btn btn-primary px-6 py-2 text-sm font-medium rounded-md focus:ring-2 focus:ring-blue-500"
         disabled={isSuggestLoading}
       >
         Suggest Messages
@@ -227,7 +232,7 @@ export default function SendMessage() {
             <Button
               key={index}
               variant="outline"
-              className="mb-2 w-full text-left text-gray-700 hover:bg-gray-100"
+              className="btn btn-primary px-6 py-2 text-sm font-medium rounded-md focus:ring-2 focus:ring-blue-500"
               onClick={() => handleMessageClick(message)}
             >
               {message}
@@ -244,7 +249,7 @@ export default function SendMessage() {
   <div className="text-center">
     <div className="mb-4 text-lg text-gray-600">Get Your Message Board</div>
     <Link href={'/sign-up'}>
-      <Button className="bg-gray-600 text-white hover:bg-gray-700 transition-all duration-300 px-8 py-3 rounded-md">
+      <Button className="btn btn-primary px-6 py-2 text-sm font-medium rounded-md focus:ring-2 focus:ring-blue-500">
         Create Your Account
       </Button>
     </Link>

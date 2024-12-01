@@ -26,25 +26,25 @@ const Navbar = () => {
     {/* Center: Navigation Links */}
     <div className="flex space-x-6">
   {/* Home Link with Icon */}
-  <Link href="/" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center space-x-2">
+  <Link href="/" className=" hover:text-blue-600 transition duration-300 flex items-center space-x-2">
     <FaHome className="text-lg" />
     <span>Home</span>
   </Link>
 
   {/* Dashboard Link with Icon */}
-  <Link href="/dashboad" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center space-x-2">
+  <Link href="/dashboad" className=" hover:text-blue-600 transition duration-300 flex items-center space-x-2">
     <FaTachometerAlt className="text-lg" />
     <span>Dashboard</span>
   </Link>
 
   {/* Send Messages Link with Icon */}
-  <Link href={`/u/${session?.user.username}`} className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center space-x-2">
+  <Link href={`/u/${session?.user.username}`} className=" hover:text-blue-600 transition duration-300 flex items-center space-x-2">
     <FaPaperPlane className="text-lg" />
     <span>Send Messages</span>
   </Link>
 
   {/* Settings Link with Icon */}
-  <Link href="/settings" className="text-gray-600 hover:text-blue-600 transition duration-300 flex items-center space-x-2">
+  <Link href="/settings" className=" hover:text-blue-600 transition duration-300 flex items-center space-x-2">
     <FaCog className="text-lg" />
     <span>Settings</span>
   </Link>
