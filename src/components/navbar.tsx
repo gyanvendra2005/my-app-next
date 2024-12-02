@@ -52,7 +52,7 @@ const Navbar = () => {
       </div>
   
       {/* Right Side: Login / Logout */}
-      <div className="flex items-center space-x-2 md:space-x-4">
+      <div className="flex items-center m-1 space-x-2 md:space-x-4">
         {session ? (
           <>
             {/* <div className="flex items-center text-gray-700 font-medium space-x-2">
