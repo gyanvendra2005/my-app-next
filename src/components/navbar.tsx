@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center">
         
         {/* Logo */}
-        <Link href="/dashboard" className="text-2xl font-extrabold text-blue-600 hover:text-blue-500 transition duration-300 ease-in-out md:text-lg">
+        <Link href="/dashboard" className="text-sm font-extrabold text-blue-600 hover:text-blue-500 transition duration-300 ease-in-out md:text-lg">
           Anonymous Message
         </Link>
 
