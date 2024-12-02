@@ -33,7 +33,7 @@ const Navbar = () => {
         </Link>
   
         {/* Dashboard Link with Icon */}
-        <Link href="/dashboard" className="hover:text-blue-600 transition duration-300 flex items-center space-x-2 p-2 rounded-md hover:bg-blue-50">
+        <Link href="/dashboad" className="hover:text-blue-600 transition duration-300 flex items-center space-x-2 p-2 rounded-md hover:bg-blue-50">
           <FaTachometerAlt className="text-lg" />
           <span>Dashboard</span>
         </Link>
