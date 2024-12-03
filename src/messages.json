@@ -1,19 +1,17 @@
 [
     {
-        "title":"hi here",
-        "content":"sdfghj sdfghbjn sdfvgbhn",
-        "recived":"1day ago"
+        "title": "New Transaction Alert",
+        "content": "You have received a new anonymous donation of $50. Please check your balance for updates.",
+        "received": "1 day ago"
     },
-
     {
-        "title":"hi here",
-        "content":"sdfghj sdfghbjn sdfvgbhn",
-        "recived":"1day ago"
+        "title": "Account Activity Notification",
+        "content": "Your account has been accessed from a new device. If this wasn't you, please secure your account immediately.",
+        "received": "1 day ago"
     },
-
     {
-        "title":"hi here",
-        "content":"sdfghj sdfghbjn sdfvgbhn",
-        "recived":"1day ago"
+        "title": "Anonymous Message Received",
+        "content": "You have a new anonymous message. Log into your account to read and respond to it.",
+        "received": "1 day ago"
     }
 ]
