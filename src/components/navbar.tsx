@@ -7,6 +7,10 @@ import {  signOut, useSession } from 'next-auth/react'
 // import {Button} from './ui/button'
 import { FaBars, FaUser } from 'react-icons/fa';
 import { FaHome, FaTachometerAlt, FaPaperPlane, FaCog } from 'react-icons/fa';
+import am from "../../public/am.png"
+import Image from 'next/image';
+
+
 const Navbar = () => {
 
     const {data:session}= useSession()
@@ -20,9 +24,16 @@ const Navbar = () => {
     <div className="container mx-auto flex justify-between items-center">
       
       {/* Logo */}
-      <Link href="/dashboad" className="text-lg font-extrabold text-blue-600 hover:text-blue-500 transition duration-300 ease-in-out ">
+      {/* <Link href="/dashboad" className="text-lg font-extrabold text-blue-600 hover:text-blue-500 transition duration-300 ease-in-out ">
         Anonymous Message
-      </Link>
+      </Link> */}
+      <Image
+                src={am} 
+                alt="Anonymous Message Logo"
+                className="md:w-64 w-44 h-auto" 
+                // width={128} 
+                // height={auto} 
+              />
   
       {/* Center: Navigation Links */}
       <div className={`md:flex md:flex-row md:space-x-6 space-y-4 md:space-y-0 absolute md:relative top-20 left-0 right-0 bg-white md:bg-transparent md:top-0 md:left-0 md:right-0  ${mobileMenuOpen ? 'block' : 'hidden'} md:block`}>

@@ -5,6 +5,8 @@ import { FaFacebook } from "react-icons/fa";
 // import messages from '@/messages.json';
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import am from "../../../public/am.png"
+import Image from 'next/image';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -25,13 +27,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <div className="text-center md:text-left mb-4 md:mb-0">
         <a href="/" className="flex justify-center md:justify-start">
           <picture>
-            <source srcSet="/img_webp/onwebchat-new-logo-white.webp" type="image/webp" />
-            <source srcSet="/img/onwebchat-new-logo-white.png" type="image/png" />
-            <img
-              src="/img/onwebchat-new-logo-white.png"
-              alt="Anonymous Message Logo"
-              className="w-32 h-auto"
-            />
+            {/* <source srcSet="/img_webp/onwebchat-new-logo-white.webp" type="image/webp" />
+            <source srcSet="/img/onwebchat-new-logo-white.png" type="image/png" /> */}
+            <Image
+                src={am} 
+                alt="Anonymous Message Logo"
+                className="w-64  h-auto" 
+                // width={128} 
+                // height={auto} 
+              />
           </picture>
         </a>
         <p className="text-sm md:text-base mt-4">
