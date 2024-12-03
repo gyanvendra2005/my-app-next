@@ -6,10 +6,7 @@
 import { Mail } from 'lucide-react'; // Assuming you have an icon for messages
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Autoplay from 'embla-carousel-autoplay';
-import { FaFacebook } from "react-icons/fa";
 import messages from '@/messages.json';
-import { FaXTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
 
 import {
   Carousel,
@@ -52,7 +49,7 @@ export default function Home() {
                     <div>
                       <p>{message.content}</p>
                       <p className="text-xs text-muted-foreground">
-                        {message.recived}
+                        {message.received}
                       </p>
                     </div>
                   </CardContent>
