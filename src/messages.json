@@ -1,17 +1,17 @@
 [
     {
-        "title": "New Transaction Alert",
-        "content": "You have received a new anonymous donation of $50. Please check your balance for updates.",
+        "title": "Welcome to the World of Feedback",
+        "content": "Thank you for joining us! We're excited to hear your thoughts and suggestions. Your feedback helps us improve and deliver a better experience. Feel free to share your opinions anytime.",
         "received": "1 day ago"
-    },
+    },    
     {
         "title": "Account Activity Notification",
         "content": "Your account has been accessed from a new device. If this wasn't you, please secure your account immediately.",
-        "received": "1 day ago"
+        "received": "10 day ago"
     },
     {
         "title": "Anonymous Message Received",
         "content": "You have a new anonymous message. Log into your account to read and respond to it.",
-        "received": "1 day ago"
+        "received": "4 day ago"
     }
 ]
