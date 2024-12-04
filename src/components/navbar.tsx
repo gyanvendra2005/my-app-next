@@ -9,6 +9,7 @@ import { FaBars, FaUser } from 'react-icons/fa';
 import { FaHome, FaTachometerAlt, FaPaperPlane, FaCog } from 'react-icons/fa';
 import am from "../../public/am.png"
 import Image from 'next/image';
+import { FaDownload } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -61,6 +62,14 @@ const Navbar = () => {
           <span>Settings</span>
         </Link>
       </div>
+      <button>
+         <Link href="https://drive.google.com/file/d/1U71_6X_VYCmTtw1FnRzVNS36kya3WqHB/view?usp=drivesdk" 
+         target='_blank'
+         className='hover:text-blue-600 transition duration-300 flex items-center space-x-2 p-2 rounded-md hover:bg-blue-50'>
+         <FaDownload />
+         <span>Download App</span>
+         </Link>
+      </button>
   
       {/* Right Side: Login / Logout */}
       <div className="flex items-center m-1 space-x-2 md:space-x-4">
